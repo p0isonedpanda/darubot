@@ -6,21 +6,19 @@ const bot = new Discord.Client();
 // Object containing commands that can be called by users
 var commands = {
     "ping": {
-        process: function(bot, message, suffix)
-        {
+        process: function(bot, message, suffix) {
             message.channel.send("Pong!");
         }
     },
 
     "say": {
-        process: function(bot, message, suffix)
-        {
+        process: function(bot, message, suffix) {
             message.channel.send(suffix);
         }
     },
+
     "ud": {
-        process: function(bot, message, suffix)
-        {
+        process: function(bot, message, suffix) {
             ud(suffix).then((udDef) => {
                 message.channel.send("", {
                     embed: {
@@ -41,6 +39,22 @@ var commands = {
                 });
             });
         }
+    },
+
+    "roll": {
+        process: function(bot, message, suffix) {
+            message.channel.send("Bear with me for a moment...");
+
+            numberRolled = suffix.split("d")[0];
+            faceCount = suffix.split("d")[1];
+            var result = " ";
+
+            for (i = 0; i < parseInt(numberRolled); i++) {
+                result += "Roll " + (i + 1) + ": " +
+                    ( 1 + Math.floor(Math.random() * Math.floor(faceCount))) + "\n";
+            }
+            message.channel.send(result);
+        }
     }
 }
 
@@ -57,11 +71,13 @@ function CheckCommand(_msg) {
             
             try {
                 cmd.process(bot, _msg, suffix);
-                console.log(_msg.author.username + " has executed command " + cmdTxt + " | " + new Date());
+                var logMessage = _msg.author.username + " has executed command " + cmdTxt + " | " + new Date();
             } catch (e) {
                 _msg.channel.send("Unknown command!");
-                console.log(_msg.author.username + " has executed an unknown command | " + new Date());                
+                var logMessage = _msg.author.username + " has executed an unknown command | " + new Date();           
             }
+
+            console.log(logMessage);
         }
 }
 
