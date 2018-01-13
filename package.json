@@ -1,0 +1,11 @@
+{
+    "name": "darubot",
+    "version": "0.0.1",
+    "description": "SUPER HACKA BOT",
+    "main": "main.js",
+    "author": "p0isonedpanda",
+    "license": "CC-BY-4.0",
+    "dependencies": {
+        "discord.js": "latest"
+    }
+}

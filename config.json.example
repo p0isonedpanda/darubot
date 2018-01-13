@@ -1,0 +1,6 @@
+// Example config file for darubot
+
+{
+    "prefix": "!", // Set this prefix to whatever you want
+    "token": "TOKEN GOES HERE" // Put your bot's token here
+}
