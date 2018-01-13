@@ -9,6 +9,13 @@ var commands = {
         {
             message.channel.send("Pong!");
         }
+    },
+
+    "say": {
+        process: function(bot, message, suffix)
+        {
+            message.channel.send(suffix);
+        }
     }
 }
 
@@ -22,6 +29,7 @@ function CheckCommand(_msg) {
             if (cmd) {
                 if (_msg.author == bot.user) return;
             }
+            console.log(_msg.author.username + " has executed command " + cmdTxt + " | " + new Date());
             cmd.process(bot, _msg, suffix);
         }
 }
