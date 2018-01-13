@@ -29,8 +29,14 @@ function CheckCommand(_msg) {
             if (cmd) {
                 if (_msg.author == bot.user) return;
             }
-            console.log(_msg.author.username + " has executed command " + cmdTxt + " | " + new Date());
-            cmd.process(bot, _msg, suffix);
+            
+            try {
+                cmd.process(bot, _msg, suffix);
+                console.log(_msg.author.username + " has executed command " + cmdTxt + " | " + new Date());
+            } catch (e) {
+                _msg.channel.send("Unknown command!");
+                console.log(_msg.author.username + " has executed an unknown command | " + new Date());                
+            }
         }
 }
 
