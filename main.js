@@ -1,4 +1,5 @@
 const Discord = require("discord.js");
+const ud = require("relevant-urban");
 const config = require("./config.json");
 const bot = new Discord.Client();
 
@@ -15,6 +16,30 @@ var commands = {
         process: function(bot, message, suffix)
         {
             message.channel.send(suffix);
+        }
+    },
+    "ud": {
+        process: function(bot, message, suffix)
+        {
+            ud(suffix).then((udDef) => {
+                message.channel.send("", {
+                    embed: {
+                        title: udDef.word,
+                        description: udDef.definition,
+                        color: 0xE86121,
+                        footer: {
+                            text: "Definition provided by Urban Dictionary"
+                        }
+                    }
+                });
+            }, () => {
+                message.channel.send("", {
+                    embed: {
+                        description: "**ERROR:** No definition found!",
+                        color: 0xFF0000
+                    }
+                });
+            });
         }
     }
 }

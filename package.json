@@ -6,6 +6,7 @@
     "author": "p0isonedpanda",
     "license": "CC-BY-4.0",
     "dependencies": {
-        "discord.js": "latest"
+        "discord.js": "latest",
+        "relevant-urban": "latest"
     }
 }
