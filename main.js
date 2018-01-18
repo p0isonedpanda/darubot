@@ -12,7 +12,7 @@ function CheckCommand(_msg) {
             var cmd = commands[cmdTxt];
 
             if (cmd) {
-                if (_msg.author == bot.user) return;
+                if (_msg.author == bot.user || _msg.author.bot) return;
             }
             
             try {
